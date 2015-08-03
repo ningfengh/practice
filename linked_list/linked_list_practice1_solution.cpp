@@ -22,7 +22,7 @@ class LinkedList {
 			head = new ListNode(x);
 			size  = 1;
 		}		
-		insert (int x)
+		void insert (int x)
 		{
 			// fill in this section to insert value x to the linked-list
 			if (head == NULL)
@@ -40,7 +40,7 @@ class LinkedList {
 				size++;
 			}
 		}
-		print ()
+		void print ()
 		{
 			// fill in this section to print the linked-list
 			ListNode *tmp = head;
