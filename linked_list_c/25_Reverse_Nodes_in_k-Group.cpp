@@ -45,7 +45,13 @@ void PrintList(ListNode* head)
 class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
-        
+        ListNode *tmp=head;
+		int i;
+		for (i=0;i<k;i++)
+		{
+			tmp = tmp->next;
+			
+		}
     }
 };
 
