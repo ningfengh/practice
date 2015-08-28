@@ -41,11 +41,26 @@ void PrintList(ListNode* head)
 		temp = temp->next;
 	}	
 }
-
 class Solution {
 public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode* tmp = new ListNode(0),*tmp1;
+		tmp->next = head;
+		tmp1 = tmp;
+		if (head==NULL || head->next==NULL) return head;
+		while (tmp->next!=NULL)
+		{
+			int flag = 0;
+			while (tmp->next->next!=NULL && tmp->next->val==tmp->next->next->val)
+			{
+				flag = 1;
+				tmp->next->next = tmp->next->next->next;
+			}
+			if (flag ==1) tmp->next = tmp->next->next;
+			else
+				tmp = tmp->next;
+		}
+		return tmp1->next;
     }
 };
 
@@ -53,9 +68,12 @@ int main(void)
 {
 	ListNode *l1=NULL;
 	Solution mysolution;
-	int a[]={1,2,3,4,5,6,7};
+	int a[]={1,1,1,2};
 
 	CreateList(&l1,a,(int)sizeof(a)/sizeof(*a));
-    PrintList(mysolution.removeNthFromEnd(l1,3));
+	
+	PrintList(l1);
+	cout<<endl;
+	PrintList(mysolution.deleteDuplicates(l1));
 	return 1;
 }

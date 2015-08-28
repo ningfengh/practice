@@ -44,18 +44,43 @@ void PrintList(ListNode* head)
 
 class Solution {
 public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode* head=new ListNode(0),*tmp=head;
+
+		while (l1!=NULL && l2!=NULL)
+		{
+			if (l1->val<l2->val)
+			{
+				tmp->next = l1;
+				l1 = l1->next;
+				tmp = tmp->next;
+			}
+			else
+			{
+				tmp->next = l2;
+				l2 = l2->next;
+				tmp = tmp->next;
+			}
+		}
+		if (l1==NULL)
+		{
+			tmp->next = l2; return head->next;
+		}
+		else
+		{
+			tmp->next = l1; return head->next;
+		}
     }
 };
 
 int main(void)
 {
-	ListNode *l1=NULL;
+	ListNode *l1=NULL,*l2=NULL;
 	Solution mysolution;
-	int a[]={1,2,3,4,5,6,7};
-
+	int a[]={1};
+	int b[]={};
 	CreateList(&l1,a,(int)sizeof(a)/sizeof(*a));
-    PrintList(mysolution.removeNthFromEnd(l1,3));
+	CreateList(&l2,b,(int)sizeof(b)/sizeof(*b));
+	PrintList(mysolution.mergeTwoLists(l1,l2));
 	return 1;
 }
