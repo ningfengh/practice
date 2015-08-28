@@ -42,20 +42,15 @@ void PrintList(ListNode* head)
 	}	
 }
 
-class Solution {
-public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        
-    }
-};
 
 int main(void)
 {
-	ListNode *l1=NULL;
+	ListNode *l1=NULL,*l2=NULL;
 	Solution mysolution;
-	int a[]={1,2,3,4,5,6,7};
-
+	int a[]={5};
+	int b[]={5};
 	CreateList(&l1,a,(int)sizeof(a)/sizeof(*a));
-    PrintList(mysolution.removeNthFromEnd(l1,3));
+	CreateList(&l2,b,(int)sizeof(b)/sizeof(*b));
+ 
 	return 1;
 }
