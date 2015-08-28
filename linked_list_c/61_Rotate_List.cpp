@@ -41,36 +41,35 @@ void PrintList(ListNode* head)
 		temp = temp->next;
 	}	
 }
+
 class Solution {
 public:
-    ListNode* swapPairs(ListNode* head) {
-        ListNode *tmp0 = new ListNode(0),*tmp1,*tmp2,*tmp3,*tmp4;
-		tmp0->next = head;
-		tmp1 = tmp0;
-		while (tmp1->next!=NULL&&tmp1->next->next!=NULL)
+    ListNode* rotateRight(ListNode* head, int k) {
+        ListNode *tmp = head;
+		int i,length=1;
+		if (head==NULL) return NULL;
+		while (tmp->next!=NULL)
 		{
-			tmp2 = tmp1->next;
-			tmp3 = tmp2->next;
-			tmp4 = tmp3->next;
-			tmp1->next = tmp3;
-			tmp3->next = tmp2;
-			tmp2->next = tmp4;
-			tmp1 = tmp1->next->next;
+			tmp = tmp->next;
+			length++;
 		}
-	
-		return tmp0->next;
 		
+		tmp->next = head;
+		for (i=0;i<(-k%length+length)%length;i++)
+			tmp = tmp->next;
+		head = tmp->next;
+		tmp->next=NULL;
+		return head;
+			
     }
 };
-
 int main(void)
 {
 	ListNode *l1=NULL;
 	Solution mysolution;
-	int a[]={};
-
+	int a[]={1,2};
 	CreateList(&l1,a,(int)sizeof(a)/sizeof(*a));
-	PrintList(mysolution.swapPairs(l1));
+	PrintList(mysolution.rotateRight(l1,3));
  
 	return 1;
 }
