@@ -48,22 +48,38 @@ void PrintList(ListNode* head)
 	}	
 }
 
+void PrintTreeDFS(TreeNode* root)
+{
+	if (root!=NULL)
+	{
+		cout<<root->val<<endl;
+		PrintTreeDFS(root->left);
+		PrintTreeDFS(root->right);
+	}
+}
+
 class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
 		if (head==NULL) return NULL;
-        TreeNode* root = new TreeNode(head->val);
-		TreeNode* tmp1,*tmp2;
-		tmp1 = root;
-		while (head->next=NULL)
+		if (head->next==NULL) return new TreeNode(head->val);
+		ListNode* tmp;
+		tmp = head;
+		int length=0,i;
+		while (tmp!=NULL)
 		{
-			head = head->next;
-			tmp2 = new TreeNode(head->val);
-			tmp1->right = tmp2;
-			tmp1 = tmp1->right;
-			
+			tmp = tmp->next;
+			length++;
 		}
-		return root;
+		tmp = head;
+		for (i=0;i<length/2-1;i++)
+			tmp = tmp->next;
+		TreeNode* root = new TreeNode(tmp->next->val);
+		root->right = sortedListToBST(tmp->next->next);
+		tmp->next = NULL;
+		root->left = sortedListToBST(head);
+		
+		
 			
     }
 };
@@ -72,9 +88,9 @@ int main(void)
 {
 	ListNode *l1=NULL;
 	Solution mysolution;
-	int a[]={1,2,3,4,5,6};
+	int a[]={1,2,3};
 
 	CreateList(&l1,a,(int)sizeof(a)/sizeof(*a));
-	 
+	PrintTreeDFS(mysolution.sortedListToBST(l1)); 
 	return 1;
 }
