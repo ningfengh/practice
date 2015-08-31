@@ -9,6 +9,6 @@ int main(void)
 	mymap[1]=2;
 	mymap[2]=3;
 	mymap[3]=4;
-	cout<<mymap[3]<<endl;
+	cout<<mymap.count(2)<<endl;
 	return 1;
 }
