@@ -27,9 +27,14 @@ public:
 		int m = board.size();    // number of rows
 		int n = board[0].size();   // number of columns
 		bool flag = false;
-
+		
+		cout<<"word="<<word<<endl;
+		cout<<"i="<<i<<endl;
+		cout<<"j="<<j<<endl;
+		cout<<"start="<<start<<endl;
 		if (start == length) 
 		{
+			cout<<"length=0"<<endl;
 			return true;
 		}
 		else 
@@ -38,24 +43,28 @@ public:
 			{
 				occupy[i-1][j]=1;
 				flag = search(board,occupy,word,start+1,i-1,j);
+				cout<<"return flag "<<flag<<endl;
 				occupy[i-1][j]=0;
 			}
-			if (i<m-1 && occupy[i+1][j]==0 && board[i+1][j]==word[start]) //right
+			else if (i<m-1 && occupy[i+1][j]==0 && board[i+1][j]==word[start]) //right
 			{
 				occupy[i+1][j]=1;
 				flag = search(board,occupy,word,start+1,i+1,j);
+				cout<<"return flag "<<flag<<endl;
 				occupy[i+1][j]=0;
 	    	}
-			if (j>0 && occupy[i][j-1]==0 && board[i][j-1]==word[start]) // top
+			else if (j>0 && occupy[i][j-1]==0 && board[i][j-1]==word[start]) // top
 			{
 				occupy[i][j-1]=1;
 				flag = search(board,occupy,word,start+1,i,j-1);
+				cout<<"return flag "<<flag<<endl;
 				occupy[i][j-1]=0;
 			}			
-			if (j<n-1 && occupy[i][j+1]==0 && board[i][j+1]==word[start])
+			else if (j<n-1 && occupy[i][j+1]==0 && board[i][j+1]==word[start])
 			{
 				occupy[i][j+1]=1;
 				flag = search(board,occupy,word,start+1,i,j+1);
+				cout<<"return flag "<<flag<<endl;
 				occupy[i][j+1]=0;
 			}
 			if (flag) return true;
@@ -69,7 +78,7 @@ public:
 		int m = board.size();    // number of rows
 		int n = board[0].size();   // number of columns
 		int i,j;
-		vector<vector<bool> > occupy(m,vector<bool> (n,0));
+		vector<vector<bool> > occupy(m,vector<bool> (m,0));
 		
 		bool flag = false;
 		for (i=0;i<m;i++)
@@ -152,7 +161,7 @@ int main(void)
 	
 	vector<vector<char> > board;
 	Solution mysolution;
-	string word = "myjhmhxptfnhrjznqwlgvuxveqwkpqybqiicrftnnhugsutkshrqbolfgkrvaqysahwrosgdbbmvxfgpmzfpptx";
+	string word = "a";
 	int i;
 	int n = board_string[0].size();
 	int m = 54;
@@ -161,8 +170,8 @@ int main(void)
 		vector<char> tmp(&board_string[i][0],&board_string[i][0]+n);
 		board.push_back(tmp);
 	}
-
+	cout<<board[0][0]<<endl;
 	
 	cout<<mysolution.exist(board,word)<<endl;	
-
+	cout<<"lalala"<<endl;
 }
