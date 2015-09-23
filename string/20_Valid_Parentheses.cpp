@@ -1,36 +1,46 @@
 #include <string>
 #include <iostream>
+#include <vector>
 using namespace std;
+
+void PrintVector(vector<char>& in)
+{
+	int i;
+	for (i=0;i<in.size();i++)
+		cout<<in[i]<<" ";
+	cout<<endl;
+}
 
 
 class Solution {
 public:
-    string convert(string s, int numRows) {
-        string result;
-		int length = s.size();
-		if (numRows==1) return s;
-		int i,j;
-		for (i=0;i<length;i+=(numRows-1)*2)
-			result = result+s[i];
-		for (i=1;i<numRows-1;i++)
+    bool isValid(string s) {
+		int i;
+        vector <char> mystack;
+		for (i=0;i<s.size();i++)
 		{
-			for (j=i;j<length;j+=(numRows-1)*2)
-			{
-				result = result+s[j];
-				if (j+(numRows-1)*2-2*i<length)
-					result = result+s[j+(numRows-1)*2-2*i];
-			}
+			
+
+			if (s[i]=='[' ||s[i]=='('||s[i]=='{' )
+				mystack.push_back(s[i]);
+			if (s[i]==']')
+				if (mystack.size()==0 || mystack[mystack.size()-1]!='[') return false;
+				else mystack.pop_back();
+			if (s[i]==')')
+				if (mystack.size()==0 || mystack[mystack.size()-1]!='(') return false;
+				else mystack.pop_back();
+			if (s[i]=='}')
+				if (mystack.size()==0 || mystack[mystack.size()-1]!='{') return false;
+				else mystack.pop_back();				
 		}
-		for (i=numRows-1;i<length;i+=(numRows-1)*2)
-			result = result+s[i];		
-		
-		return result;
+		if (mystack.size()==0) return true;
+		else return false;
     }
 };
 
 int main(void)
 {
 	Solution mysolution;
-	cout<<mysolution.convert("A",1);
+	cout<<mysolution.isValid("[{()}]");
 
 }
