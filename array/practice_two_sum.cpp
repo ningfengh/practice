@@ -41,8 +41,10 @@ public:
 			if (nums[i]+nums[j]==target)
 			{
 				cout<<nums[i]<<" "<<nums[j]<<endl;
-				while (nums[i+1]==nums[i]&&i<j) i++;
-				while (nums[j-1]==nums[j]&&i<j) j--;
+				while (nums[i+1]==nums[i]&&i<j-1) i++;
+				while (nums[j-1]==nums[j]&&i<j-1) j--;
+				i++;
+				j--;
 			}
 			else if (nums[i]+nums[j]>target)
 				j--;
@@ -56,11 +58,11 @@ public:
 int main(void)
 {
 	Solution mysolution;
-	int in[]={2,2,2,2,2,2};
+	int in[]={0,0,2,2};
 	int i;
-	vector<int> input(in,in+6);
+	vector<int> input(in,in+4);
 	vector<vector<int> > output;
-	output= mysolution.twoSum(input,4);
+	output= mysolution.twoSum(input,2);
 	//for (i=0;i<output.size();i++)
 		//PrintVector(output[i]);
 	
