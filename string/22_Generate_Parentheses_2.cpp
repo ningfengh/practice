@@ -25,19 +25,19 @@ public:
 		}
 		else
 		{
-			for (i=left+1;i<=n;i++)
+					
+			if (left<n)
 			{
 				current = current+'(';
-				generateParenthesis(n,i,right,current,result);
+				generateParenthesis(n,left+1,right,current,result);
+				current = current.substr(0,current.size()-1);
 			}
-			current = current.substr(0,current.size()-(n-left));
-			
-			for (i=right+1;i<=left;i++)
-			{
+			if (left>right && left<=n) {
 				current = current+')';
-				generateParenthesis(n,left,i,current,result);
+				generateParenthesis(n,left,right+1,current,result);
+				current = current.substr(0,current.size()-1);
 			}
-			if (left-right>0) current = current.substr(0,current.size()-(left-right));			
+			
 		}
 	}
 	
